@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .tog-menu{display: none;}
+        .tog li{display: inline-block; padding: 10px;}
+        .active{
+            display:block; 
+            animation: myfadein 1s ease-in-out; /* 호출할애니메이션, 지속시간, 옵션 */
+            }
+        /* 애니메이션 myfadein */
+        @keyframes myfadein{
+            from{
+                opacity: 0;
+            }to{
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <ul class="tog">
+            <li data-id = "#tog1">메뉴1</li>
+            <li data-id = "#tog2">메뉴2</li>
+            <li data-id = "#tog3">메뉴3</li>
+        </ul>
+
+        <!-- 메뉴에 따라서 보여줄 영역 -->
+        <div>
+            <divm class="tog-menu" id="tog1">토글메뉴1</div>
+            <div class="tog-menu" id="tog2" >토글메뉴2</div>
+            <div class="tog-menu active" id="tog3">토글메뉴3</div>
+        </div>
+    </section>
+
+
+    <script>
+        /* 
+        이벤트 위임방식을 이용해서 이벤트를 처리합니다.
+        data-id값을 얻어서 각 아이디에 id에 적합한 태그 class이름에 active를 추가해줍니다.
+        나머지 tog-menu의 active는 지워줍니다.
+        contains(), add(), remove() 등등을 활용
+         */
+
+        var tog = document.querySelector(".tog");
+        var list = document.querySelectorAll(".tog-menu");
+        tog.onclick=function(){
+            if(event.target.tagName !== 'LI')return;
+            
+            for(var i = 0 ; i < list.length ; i++){
+                if(list[i].classList.contains("active")){/* 클래스중에 active가 포함된다면 */
+                    list[i].classList.remove('active');
+                }
+            }
+            //태그의 data-id를 얻어와서 현재 실행되는 대상에 add() 추가
+            var target = event.target.dataset.id;
+            document.querySelector(target).classList.add("active");
+            
+        }
+
+    </script>
+</body>
+</html>

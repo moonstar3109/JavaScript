@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <h2>날짜 객체 사용하기</h2>
+    <script>
+        var before = new Date(1606710311376); //(예전 날짜)
+        var date = new Date();//오늘날짜 (날짜 형식)
+        
+        /* console.log(before)
+
+        console.log(date)
+
+        console.log(date.getTime()); //시간을 밀리초로 변경
+        console.log(date.getFullYear() ); //년
+        console.log(date.getMonth() + 1 ); //월
+        console.log(date.getDate() ); //일
+        console.log(date.getHours() ); //시
+        console.log(date.getMinutes() ); //분
+        console.log(date.getSeconds() ); //초 */
+
+        var str;
+        var millis = 1606710311376 - (1000 *60 * 60* 24);
+;
+        var gap = date.getTime() - millis; //밀리초 - 밀리초
+
+        if(gap<1000*60*60*24) { //1일 이하인경우
+            if(gap < 1000* 60* 60){ //1시간 이하인경우
+                str = "방금전";
+
+            } else{
+                str = preseInt(gap/(1000*60*60) ) + "시간전"; //"xx시간전";
+
+            }
+
+        }else{ // 1일 이상인겨우
+            
+        var now = new Date(millis); //시간을 밀리초로 변경
+       var year = now.getFullYear(); //년
+        var month = now.getMonth() + 1; //월
+       var date = now.getDate(); //일
+        var hour = now.getHours(); //시
+        var minute = now.getMinutes(); //분
+        var second = now.getSeconds(); //초
+       
+        str = year + "년" + month + "월" + date + "일" + hour +"시" + minute + "분" +second + "초"
+        }
+        console.log(str);
+    </script>
+</body>
+</html>

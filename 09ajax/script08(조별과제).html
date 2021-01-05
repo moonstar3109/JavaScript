@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- 각 라인에 앉아있는 3명끼리 하나의 조 -->
+    <!-- 공공데이터 포털같은데서 API를 적용할 수 있는 주제를 선정 -->
+    <!-- fetch를 이용해서 데이터를 받아온 다음에, 카카오API를 사용해서
+        간단하게 하나의 화면에서 데이터 처리. -->
+
+    <select class="station">
+
+    </select>
+
+    <!-- 지도 -->
+    <div id="map" style="width:100%;height:350px;"></div>
+
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fc73b604699eeaa26569a3d69d6caf38"></script>
+    <script>
+
+
+        function getFetch() {
+            fetch("http://openapi.seoul.go.kr:8088/654655504a6d6f6f3730744c664d71/json/bikeList/1/100/")
+                .then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+
+                    var list = data.rentBikeStatus.row;
+                    console.log(list)
+
+
+                    var station = document.querySelector(".station");
+                    //선택옵션 만들기
+                    for (var i = 0; i < list.length; i++) {
+                        var option = document.createElement("option");
+                        option.innerHTML = list[i].stationName;
+                        station.appendChild(option);
+                    } //end for
+
+                    
+                    var station = document.querySelector(".station");
+                    station.onchange = function () {
+                        
+                        var target = event.target.value;
+                        var lat;
+                        var lng;
+                        for(var i = 0 ; i < list.length ; i++){
+                            if(list[i].stationName == target){
+                                lat = list[i].stationLatitude;
+                                lng = list[i].stationLongitude;
+                            } 
+                        }
+                        
+                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                        mapOption = {
+                            center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+                            level: 3 // 지도의 확대 레벨
+                        };
+                        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                        var map = new kakao.maps.Map(mapContainer, mapOption);
+                    }
+
+
+
+
+                });
+            } //getFetch()
+
+
+
+
+
+        (function () {
+            getFetch();
+
+        })();
+    </script>
+</body>
+
+</html>

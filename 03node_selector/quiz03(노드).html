@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+   
+    .head{text-align: center;}
+    
+    section{width: 100%; height: 1000px; text-align: center;}
+    .out{width: 50%; height: 400px; margin: 0 auto; border: 1px solid black;overflow: hidden;}
+    .inner1, .inner2{ width: 50%; height: 402px; box-sizing: border-box; 
+   float: left;padding: 5px;}
+     .img,.text{width: 100%; height: 100%;border: 1px solid black;}   
+     .text{overflow: auto;}
+</style>
+<body id = "body1">
+        <header class="head">
+    <h2>style속성 활용하기</h2>
+        <div>
+            <button type="button" id="btn1">어둡게</button>
+            <button type="button" id="btn2">밝게</button>
+        </div>
+    </header>
+    <hr>
+    
+    <section>
+        <div class="out">
+            <div class="inner1">
+                <div class="img">
+                    <img src="img/1.jpg" width="345px" height="392px">
+                </div>
+            </div>
+            <div class="inner2">
+                <div class="text">
+                    트위치 스트리머 겸 유튜버. 2018년 11월 27일 트위치에서 방송을 시작했다. 유튜브 채널 시작일은 2019년 2월 2일이다.
+    학교를 다니던 중 친구의 권유로 방송을 시작하게 되었다고 한다.[17] 또 방송을 하게 되면 평소 애청하던 스트리머와 친해지게 되지 않을까하는 기대도 있었다고 한다. 그 뒤, 방송을 통해서 정말로 친해지게 되었다고.[18]
+    방송 초기에는 종합 게임 스트리머를 지향했었다. 2019년 중순부터는 종합 게임 스트리머에 구속되지 않고, 다양한 컨텐츠와 짧은 게임들을 진행하는데 본인이 99% 저챗 스트리머라고 소개하기도 한다.
+                </div>
+            </div> 
+        </div>
+    </section>
+
+    <script>
+       var btn1 = document.getElementById("btn1");
+       var btn2 = document.getElementById("btn2");
+        var body = document.getElementById("body1");
+        var out = document.querySelector(".out");
+        var img = document.querySelector(".img")
+        var text = document.querySelector(".text")
+        
+       btn1.onclick = function() {
+         
+           body.style.backgroundColor= "black";
+           body.style.color = "white";
+           out.style.borderColor = "white";
+           img.style.borderColor = "white";
+           text.style.borderColor = "white";
+             
+       }
+
+       btn2.onclick = function() {
+         
+         body.style.backgroundColor= "white";
+         body.style.color = "black";
+         out.style.borderColor = "black";
+         img.style.borderColor = "black";
+         text.style.borderColor = "black";
+           
+     }
+    </script>
+</body>
+</html>  
+
+
+
+<!-- 
+    var dark = document.getElementById("dark");
+    dark.onclick = function() {
+        document.body.style.backgroundColor = "black"; //body는 document의 하위자식이라서, .으로 접근가능
+        var tag =document.querySelectorAll("h2,p,a");
+        tag[0].style.color = "white";
+        tag[1].style.color = "white";
+        tag[2].style.color = "white";
+    }
+ -->

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h2>jsp에 서블릿으로 데이터를 요청(응답)</h2>
+
+    <button type="button" onclick="ajax()">ajax요청해보기</button>
+
+    <script>
+        function ajax() {
+            fetch("http://localhost:8181/AJAX/AjaxController?", {
+                method: 'POST', //  *GET, POST, PUT, DELETE, etc.
+                mode: 'no-cors', // no-cors(서버가 달라도 허용O), cors(서버가 다른 경우에는 허용x), *same-origin(같은서버에서만 사용가능)
+                headers: {
+                    //'Content-Type': 'application/json', //JSON형식으로 보내겠다
+                    'Content-Type': 'application/x-www-form-urlencoded',// Form형식으로 보내겠다(ecilpse는 json을 모르기때문에 form형식으로 변환)
+                },
+                //body: JSON.stringify({"id":"kkk123"}), // body data type must match "Content-Type" header
+                body: "id=kkk123&name=홍길동", // form형식을 지켜서 전송
+                // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                // credentials: 'same-origin', // include, *same-origin, omit
+            }).then(function (response) {
+                    return response.text(); //문자열로 변경
+            })
+        }
+    </script>
+</body>
+
+</html>

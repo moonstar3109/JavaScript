@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .bgImg{position: relative;}
+        .clock {position: absolute; left: 20; top: 0;}
+        .clock h3{color: white;}
+    </style>
+</head>
+<body data-img = '{"1":"img/1.jpg","2":"img/2.jpg","3":"img/3.jpg","4":"img/4.jpg"}'>
+    <!-- object의 길이를 확인하는 문법은 검색. -->
+
+    <img class="bgImg" width="800"> <!-- 배경을 넣을 이미지 -->
+
+    <div class="clock">
+        <h3>00:00:00</h3>
+    </div>
+
+    <script>
+        
+
+        function createTime(){
+        var date = new Date();
+        
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        
+        var time = (hour<10? "0"+hour:hour)+":"+(min<10?"0"+min : min) + ":" + (sec<10?"0"+sec:sec);
+        
+        document.querySelector(".clock h3").innerHTML = time;
+
+        }
+
+        var count = 0; //json키값에 사용할 변수
+        function changeBackground(){
+           //body에 있는 date set을 얻는다.
+            var data = document.body.dataset.img;
+            var result = JSON.parse(data);
+
+            var bgImg = document.querySelector(".bgImg");
+            
+            bgImg.src = result[++count];
+        
+            if(count == Object.keys(result).length) count = 0;
+
+        }
+
+
+        (function(){
+            createTime(); //시간 생성함수
+            setInterval(createTime,1000);
+            changeBackground(); //배경 변경함수
+            setInterval(changeBackground,1000);// 인터벌
+        })();
+
+       
+    </script>
+</body>
+</html>

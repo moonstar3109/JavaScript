@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{border-spacing: 0; border-collapse: collapse;width: 100%;}
+        th,td {text-align: center;border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <table class="mother">
+        <thead>
+            <th>번호</th>
+            <th>과정명</th>
+            <th>담당교수</th>
+            <th>관리</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>강남응용자바</td>
+                <td>홍길동</td>
+                <td>
+                    <button class="btn-info">시험기본정보</button>
+                    <button class="btn-out">시험출제</button>
+                    <button class="btn-res">시험결과</button>
+                    <button class="btn-man">성적관리</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var mother = document.querySelector(".mother");
+        mother.addEventListener("click",open);
+
+        function open(e){
+            if(e.target.tagName !== "BUTTON")return;
+
+           if(e.target.className === "btn-info"){
+               console.log(e.target);
+               console.log("히웅오우오우웅정보")
+           }else if(e.target.className === "btn-out"){
+            console.log(e.target);
+               console.log("히웅오우오우웅출제")
+           }else if(e.target.className === "btn-res"){
+            console.log(e.target);
+               console.log("히웅오우오우웅결과")
+           }else if(e.target.className === "btn-man"){
+               console.log(e.target);
+               console.log("성적관리....")
+           }
+        }
+    </script>
+</body>
+</html>
